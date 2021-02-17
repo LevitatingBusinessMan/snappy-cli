@@ -19,7 +19,7 @@ struct arguments {
 };
 
 static struct argp_option options[] = { 
-    { "compress", 'c', 0, 0, "Compress file"},
+    { "compress", 'c', 0, 0, "Compress file (default)"},
     { "decompress", 'd', 0, 0, "Decompress file"},
 	{"output", 'o', "filename", OPTION_ARG_OPTIONAL, "New file to create"},
 	{0}
