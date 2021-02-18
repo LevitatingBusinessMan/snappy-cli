@@ -8,7 +8,7 @@ debug:
 	${CC} ${CFLAGS} -o ./snappy src/main.c -g
 
 install:
-	install -Dvm 755 ./snappy /usr/bin/snappy
+	install -Dvm 755 ./snappy ${DESTDIR}/usr/bin/snappy
 
 clean:
 	rm -v snappy
