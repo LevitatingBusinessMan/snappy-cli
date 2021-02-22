@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
 
 	char *contents;
 
-	size_t file_size;
+	int file_size;
 
 	if (strcmp(filename, "-") == 0) {
 		file_size = read_stdin(&contents);
