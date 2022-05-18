@@ -1,12 +1,12 @@
-#include "snappy-c.h"
-#include "argp.h"
-#include "stdlib.h"
-#include "string.h"
+#include <snappy-c.h>
+#include <argp.h>
+#include <stdlib.h>
+#include <string.h>
 
 const char *argp_program_version = "v1.0.0";
 const char *argp_program_bug_address = "https://github.com/LevitatingBusinessMan/snappy-cli";
 
-static char args_doc[] = "FILENAME";
+static char args_doc[] = "FILE";
 
 static char doc[] = "snappy-cli, a cli utility for compressing files via snappy";
 
@@ -19,9 +19,9 @@ struct arguments {
 };
 
 static struct argp_option options[] = { 
-    { "compress", 'c', 0, 0, "Compress file (default)"},
-    { "decompress", 'd', 0, 0, "Decompress file"},
-	{"output", 'o', "filename", OPTION_ARG_OPTIONAL, "New file to create"},
+	{ "compress", 'c', 0, 0, "Compress file (default)"},
+	{ "decompress", 'd', 0, 0, "Decompress file"},
+	{ "output", 'o', "FILE", 0, "New file to create"},
 	{0}
 };
 
@@ -97,7 +97,6 @@ int main(int argc, char *argv[]) {
 	char *output_buffer = malloc(output_length);
 
 	if (mode == COMPRESS) {
-		//printf("%d %d\n", snappy_compress(contents, file_size, output_buffer, &output_length), output_length);
 		if (snappy_compress(contents, file_size, output_buffer, &output_length) != SNAPPY_OK) {
 			printf("Failed to compress data\n");
 			exit(1);
@@ -129,7 +128,6 @@ int main(int argc, char *argv[]) {
 
 	free(contents);
 	free(output_buffer);
-
 }
 
 int read_file(const char *path, char **contents) {

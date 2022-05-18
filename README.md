@@ -3,12 +3,12 @@ This is a cli program for the very fast compression library [snappy](https://git
 
 ## Usage
 ```
-Usage: snappy [OPTION...] FILENAME
+Usage: snappy [OPTION...] FILE
 snappy-cli, a cli utility for compressing files via snappy
 
   -c, --compress             Compress file
   -d, --decompress           Decompress file
-  -o, --output[=filename]    New file to create
+  -o, --output=FILE          New file to create
   -?, --help                 Give this help list
       --usage                Give a short usage message
   -V, --version              Print program version
