@@ -1,11 +1,12 @@
 CC=gcc
-CFLAGS=-lsnappy
+CFLAGS=
+LDLIBS=-lsnappy
 
 build:
-	${CC} ${CFLAGS} -o ./snappy snappy.c
+	${CC} ${CFLAGS} snappy.c ${LDLIBS} -o ./snappy
 
 debug:
-	${CC} ${CFLAGS} -o ./snappy snappy.c -g
+	${CC} ${CFLAGS} snappy.c ${LDLIBS} -o ./snappy -g
 
 install:
 	install -Dvm 755 ./snappy ${DESTDIR}/usr/bin/snappy
