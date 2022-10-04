@@ -90,9 +90,10 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	size_t output_length = snappy_max_compressed_length(file_size);
+	size_t output_length;
 
-	if (mode == DECOMPRESS) snappy_uncompressed_length(contents, file_size, &output_length);
+	if (mode == COMPRESS) output_length = snappy_max_compressed_length(file_size);
+	else snappy_uncompressed_length(contents, file_size, &output_length);
 
 	char *output_buffer = malloc(output_length);
 
