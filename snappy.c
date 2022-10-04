@@ -104,23 +104,19 @@ int main(int argc, char *argv[]) {
 	}
 
 	if (mode == DECOMPRESS) {
-		switch (snappy_uncompress(contents, file_size, output_buffer, &output_length)) {
-		case SNAPPY_INVALID_INPUT:
-			printf("Failed to decompress data: invalid input\n");
-			exit(1);
-		case SNAPPY_BUFFER_TOO_SMALL:
-			printf("Failed to decompress data: buffer too small\n");
+		if (snappy_uncompress(contents, file_size, output_buffer, &output_length) != SNAPPY_OK) {
+			printf("Failed to decompress data (invalid input)\n");
 			exit(1);
 		}
 	}
 
 	if (output == OUTFILE) {
 		if (write_file(outfile, output_buffer, output_length) < 0) exit(1);
-		printf("Written new data to \"%s\", (old: %d, new: %d, net: %d, %.0f%%)\n",
+		printf("Written new data to \"%s\", (old: %zu, new: %zu, net: %zu, %.0f%%)\n",
 			outfile,
-			(int) file_size,
-			(int) output_length,
-			(int) output_length - file_size,
+			file_size,
+			output_length,
+			output_length - file_size,
 			(float) output_length / (float) file_size * 100.0
 		);
 	}
