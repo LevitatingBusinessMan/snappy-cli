@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
 
 	if (output == OUTFILE) {
 		if (write_file(outfile, output_buffer, output_length) < 0) exit(1);
-		printf("Written new data to \"%s\", (old: %zu, new: %zu, net: %zu, %.0f%%)\n",
+		printf("Written new data to \"%s\", (old: %d, new: %zu, net: %zu, %.0f%%)\n",
 			outfile,
 			file_size,
 			output_length,
