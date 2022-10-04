@@ -23,6 +23,7 @@ cat filename | snappy - > compressed_file
 ```
 
 ## Build
+Make sure that the package `libsnappy-dev` (Debian) or `snappy` (Arch) is installed.
 ```
 git clone https://github.com/LevitatingBusinessMan/snappy-cli.git
 cd snappy-cli
