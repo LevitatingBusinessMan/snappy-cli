@@ -18,7 +18,7 @@ struct arguments {
 	int arg_count;
 };
 
-static struct argp_option options[] = { 
+static struct argp_option options[] = {
 	{ "compress", 'c', 0, 0, "Compress file (default)"},
 	{ "decompress", 'd', 0, 0, "Decompress file"},
 	{ "output", 'o', "FILE", 0, "New file to create"},
@@ -106,14 +106,14 @@ int main(int argc, char *argv[]) {
 
 	if (mode == DECOMPRESS) {
 		if (snappy_uncompress(contents, file_size, output_buffer, &output_length) != SNAPPY_OK) {
-			printf("Failed to decompress data\n");
+			printf("Failed to decompress data (invalid input)\n");
 			exit(1);
 		}
 	}
 
 	if (output == OUTFILE) {
 		if (write_file(outfile, output_buffer, output_length) < 0) exit(1);
-		printf("Written new data to \"%s\", (old: %d, new: %d, net: %d, %.0f%)\n",
+		printf("Written new data to \"%s\", (old: %zu, new: %zu, net: %zu, %.0f%%)\n",
 			outfile,
 			file_size,
 			output_length,
@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
 			(float) output_length / (float) file_size * 100.0
 		);
 	}
-	
+
 	//To STDOUT
 	else {
 		fwrite(output_buffer, output_length, 1, stdout);
